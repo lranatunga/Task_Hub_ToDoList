@@ -36,7 +36,7 @@ function App() {
         setCount(count + 1)
 
         const newTask = {
-            name: taskName,
+            taskName: taskName,
             description: taskDescription,
             dueDate: dueDate,
             status:'Assign'
@@ -47,12 +47,12 @@ function App() {
         setIsOpen(false)
   }
 
-  useEffect(() => {
-    const storedTaskList = JSON.parse(localStorage.getItem('taskBoard'));
-    if (storedTaskList && Array.isArray(storedTaskList)) {
-      setTaskList(storedTaskList);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storedTaskList = JSON.parse(localStorage.getItem('taskBoard'));
+  //   if (storedTaskList && Array.isArray(storedTaskList)) {
+  //     setTaskList(storedTaskList);
+  //   }
+  // }, []);
 
 
   return (
@@ -81,11 +81,7 @@ function App() {
                             dueDate={dueDate}
                             setDueDate={setDueDate}  /> }
               <div className='bottom-section'>
-                <NewTaskBorad >
-                
-                <ItemBoard/>
-              
-              </NewTaskBorad> 
+                  <NewTaskBorad />
                   <InProgress />
                   <CompletedTasks />
               </div>

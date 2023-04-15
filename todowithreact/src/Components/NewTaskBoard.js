@@ -1,30 +1,27 @@
-// import ItemBoard from "./ItemBoard"
+import ItemBoard from "./ItemBoard"
 import TaskStatus from "./TasksStatus"
+import { useEffect, useState } from "react";
 
 
-function NewTaskBorad ({ taskList }) {
+function NewTaskBorad () {
 
+    const taskList = JSON.parse(localStorage.getItem('taskBoard'))||[]
     return(
         <div className="section-newTasks">
             <TaskStatus  class={'new-task-boards'}status={'New Tasks'} />
-            {/* <div className="item-board">
-        {taskList.map((task, index) => (
-          <ItemBoard
-            key={index}
-            taskName={task.name}
-            taskDescription={task.description}
-            dueDate={task.dueDate}
-            status={task.status}
-          />
-        ))}
-        </div> */}
+            {taskList.map((taskList,index) =>{
+                return <ItemBoard key={index} taskName={taskList.taskName}
+                taskDescription={taskList.description}
+                dueDate={taskList.dueDate}
+                handleDelete={taskList.deleteAddedTasks}/>
+            })}
+
+         
+      
       </div>
     )
 }
 export default NewTaskBorad
-
-
-
 
 
 
