@@ -1,0 +1,242 @@
+/* MAIN SECTIONS */
+.main{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100%;
+}
+.right-Section{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100vh;
+}
+
+.top-section{
+    display: flex;
+    flex-direction: row;
+    gap:50px;
+    background-color: rgb(128, 224, 248);
+    height: 100px;
+    align-items: center;
+    
+    
+}
+.bottom-section{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width:100%;
+    background-color: rgb(243, 240, 240);
+    gap:10px;
+    
+}
+
+
+
+
+/* PROJECT SUMMERY */
+.project-summery{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width:100%;
+    gap:100px;
+    
+
+}
+
+/* PROJECT BOARD */
+.project-board{
+    background-color:white;
+    border-radius: 10rem;
+    border: 1px solid grey;
+    padding:5px;
+    width:200px;
+    height:40px;
+    margin: 10px;
+}
+
+
+
+/* COUNTERS */
+
+.count-new-task{
+    background-color:orange;
+    border-radius:10rem; 
+    border:1px solid orange;
+    padding:5px;
+    width:125px;
+    height:40px;
+    margin: 10px;
+}
+
+.count-inprogress{
+    background-color:yellow;
+    border-radius:10rem; 
+    border:1px solid yellow;
+    padding:5px;
+    width:125px;
+    height:40px;
+    margin: 10px; 
+}
+
+.count-completed{
+    background-color:rgb(126, 236, 63);
+    border-radius: 10rem;
+    border:1px solid rgb(126, 236, 63);
+    padding:5px;
+    width:125px;
+    height:40px;
+    margin: 10px;
+}
+
+/* ADD NEW TASK BUTTON */
+
+.add-new-task{
+    background-color:white;
+    border-radius: 10rem;
+    border: 1px solid grey;
+    padding:5px;
+    width:125px;
+    height:40px;
+    margin: 10px;
+}
+
+/* NEW TASK POPUP FORM */
+
+.new-task-form{
+    display:flex;
+    flex-direction:column;
+    border:1px solid grey;
+    border-radius: 1rem;
+    background-color: aliceblue;
+    width:300px;
+    z-index: 1000;
+    gap:10px;
+    position: relative;
+}
+
+.delete-img{
+    justify-content:flex-end;
+    align-self: flex-end;
+    transform: scale(0.5);
+    height: 2.5em;
+    width: 2.5em;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.add-img{
+    justify-content:flex-end;
+    align-self: flex-end;
+    transform: scale(0.5);
+    height: 2.5em;
+    width: 2.5em;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.task-name{
+    align-self:start;
+}
+
+.task-description{
+    display:flex;
+    flex-direction:row;
+    justify-content: flex-start;
+}
+
+.due-date{
+    align-self:start;
+}
+
+.drag{
+    justify-content:flex-end;
+    align-self: flex-end;
+    transform: scale(0.5);
+    height: 2.5em;
+    width: 2.5em;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.edit{
+    justify-content:flex-end;
+    align-self: flex-end;
+    transform: scale(0.5);
+    height: 2.5em;
+    width: 2.5em;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.new-task-boards{
+    background-color:orange;
+    border-radius:10rem; 
+    border:1px solid orange;
+    padding:5px;
+    width:125px;
+    height:40px;
+    align-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.inprogress-boards{
+    background-color:yellow;
+    border-radius:10rem; 
+    border:1px solid yellow;
+    padding:5px;
+    width:125px;
+    height:40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.completed-boards{
+    background-color:rgb(126, 236, 63);
+    border-radius:10rem; 
+    border:1px solid rgb(126, 236, 63);
+    padding:5px;
+    width:125px;
+    height:40px; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+/* TASK BOARD ITEMS */
+
+.section-newTasks{
+    display: flex;
+    flex-direction: column; 
+    background-color: #f8f6f6;
+    align-items: center;
+}
+
+.section-inprogress{
+    display: flex;
+    flex-direction: column; 
+    background-color: #f8f6f6;
+    align-items: center;
+}
+
+.section-completed{
+    display: flex;
+    flex-direction: column; 
+    background-color: #f8f6f6;
+    align-items: center;
+}
+
+.item-board{
+    display: flex;
+    flex-direction: column;
+    background-color:white;
+    width: 220px;
+    height: 220px;
+    justify-content: center;
+    padding: 1rem;
+    gap: 8px;
+    border-radius: 1rem;
+    border: 1px solid seagreen;
+}
