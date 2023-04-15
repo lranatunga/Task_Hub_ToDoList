@@ -9,9 +9,9 @@ function AddTaskButton (props) {
 return(
     <div className='project-summery'>
     <TaskStatus class='project-board' status={props.projrctName}/>
-    <TaskStatus class='count-new-task' status={props.count} />
-    <TaskStatus class='count-inprogress' status={props.countIn} />
-    <TaskStatus class='count-completed' status={props.countComplete} />
+    <TaskStatus class='count-new-task' status='New Tasks : ' countStatus={props.count} />
+    <TaskStatus class='count-inprogress' status='In Progress : ' countStatus={props.countIn} />
+    <TaskStatus class='count-completed' status='Completed : ' countStatus={props.countComplete} />
     <button className='add-new-task' onClick={props.handleAddNewTasksPopup}>Add New Task</button>
     
     </div>

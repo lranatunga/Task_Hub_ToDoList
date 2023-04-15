@@ -10,10 +10,12 @@ function NewTaskBorad () {
         <div className="section-newTasks">
             <TaskStatus  class={'new-task-boards'}status={'New Tasks'} />
             {taskList.map((taskList,index) =>{
-                return <ItemBoard key={index} taskName={taskList.taskName}
-                taskDescription={taskList.description}
-                dueDate={taskList.dueDate}
-                handleDelete={taskList.deleteAddedTasks}/>
+                return <ItemBoard 
+                            key={index} 
+                            taskName={taskList.taskName}
+                            taskDescription={taskList.description}
+                            dueDate={taskList.dueDate}
+                            handleDelete={taskList.deleteAddedTasks}/>
             })}
 
          
