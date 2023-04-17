@@ -4,7 +4,9 @@ function InProgressTasks () {
     return(
         <div className="section-inprogress">
             <TaskStatus  class={'inprogress-boards'}status={'In Progress'} />
-            <ItemBoard />
+ 
+  <ItemBoard />
+
         </div>
     )
 }

@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import AddTaskPopup from './Components/AddTaskPopup';
 import ItemBoard from './Components/ItemBoard';
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 function App() {
 
@@ -18,15 +19,31 @@ function App() {
   const [taskName, setTaskName] = useState('')
   const [taskDescription, setTaskDescription] = useState('')
   const [dueDate, setDueDate] = useState('')
+  const [id ,  setId] = useState (1)
   const [taskList, setTaskList] = useState (
    JSON.parse(localStorage.getItem('taskBoard'))||[])
 
 
-    let assignStatus = JSON.parse(localStorage.getItem('taskBoard'))||[]
-    const assignCount = assignStatus.filter(task => task.taskStatus === 'Assign').length;
-    const [count, setCount] = useState(assignStatus.length > 0 ? assignCount : 0)
+  let assignStatus = JSON.parse(localStorage.getItem('taskBoard'))||[]
+  const assignCount = assignStatus.filter(task => task.taskStatus === 'Assign').length;
+  const [count, setCount] = useState(assignStatus.length > 0 ? assignCount : 0)
 
-    const [deleteTask, setDeleteTask] = useState('')
+  // const taskStatus ={
+  //   assing:{
+  //     name: 'Assign',
+  //     items: tasks,
+  //   },
+  //   inProgress:{
+  //     name:'In Progress',
+  //     items: [],
+  //   },
+  //   completed:{
+  //     name: 'Completed',
+  //     task: [],
+  //   }
+  // }
+
+ 
   
 
   const handleAddNewTasksPopup = () => {
@@ -43,6 +60,7 @@ function App() {
        
 
         const newTask = {
+            id :id,
             taskName: taskName,
             description: taskDescription,
             dueDate: dueDate,
@@ -54,14 +72,17 @@ function App() {
         setIsOpen(false)
 
         setCount(count + 1)
+        setId (id + 1)
 
   }
-  
-  const deleteAddedTasks = () => {
-    
-    setDeleteTask(deleteTask)
 
-   }
+
+   const deleteAddedTasks  = (id) =>{
+ const updatedTasks = taskList.filter(task => task.id !== id);
+  setTaskList(updatedTasks);
+  localStorage.setItem('taskBoard', JSON.stringify(updatedTasks)); 
+    setCount(count -1)
+}
 
   return (
     <div className="App">
@@ -90,9 +111,14 @@ function App() {
                             dueDate={dueDate}
                             setDueDate={setDueDate}  /> }
               <div className='bottom-section'>
-                  <NewTaskBorad deleteAddedTasks={deleteAddedTasks}/>
-                  <InProgress />
-                  <CompletedTasks />
+                <DragDropContext >
+                  <Droppable>
+                      <NewTaskBorad deleteAddedTasks={deleteAddedTasks}
+                                               />
+                      <InProgress />
+                      <CompletedTasks />
+                  </Droppable>
+                </DragDropContext>  
               </div>
         </div>
       </div>
