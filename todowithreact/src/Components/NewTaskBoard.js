@@ -18,7 +18,7 @@ function NewTaskBorad () {
                             taskDescription={taskList.description}
                             dueDate={taskList.dueDate}
                             handleDelete={taskList.deleteAddedTasks}
-                            draggable/>
+                           />
             })}
 
          

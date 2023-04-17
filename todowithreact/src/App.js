@@ -8,8 +8,8 @@ import InProgress from './Components/InProgressTasks';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import AddTaskPopup from './Components/AddTaskPopup';
-import ItemBoard from './Components/ItemBoard';
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+// import ItemBoard from './Components/ItemBoard';
+// import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 function App() {
 
@@ -111,14 +111,14 @@ function App() {
                             dueDate={dueDate}
                             setDueDate={setDueDate}  /> }
               <div className='bottom-section'>
-                <DragDropContext >
-                  <Droppable>
+                {/* <DragDropContext >
+                  <Droppable droppableId="tasks"> */}
                       <NewTaskBorad deleteAddedTasks={deleteAddedTasks}
                                                />
                       <InProgress />
                       <CompletedTasks />
-                  </Droppable>
-                </DragDropContext>  
+                  {/* </Droppable>
+                </DragDropContext>   */}
               </div>
         </div>
       </div>
