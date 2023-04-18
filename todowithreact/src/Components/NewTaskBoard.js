@@ -1,12 +1,11 @@
 import ItemBoard from "./ItemBoard"
 import TaskStatus from "./TasksStatus"
-import { useEffect, useState } from "react";
 
 
-function NewTaskBorad () {
+function NewTaskBoard () {
 
     const taskList = JSON.parse(localStorage.getItem('taskBoard'))||[]
-    const newTasks = taskList.filter(task => task.status === 'Assign');
+    
     return(
         <div className="section-newTasks">
             <TaskStatus  class={'new-task-boards'}status={'New Tasks'} />
@@ -26,7 +25,17 @@ function NewTaskBorad () {
       </div>
     )
 }
-export default NewTaskBorad
+export default NewTaskBoard
+
+
+
+
+
+  
+
+
+
+  
 
 
 

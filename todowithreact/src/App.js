@@ -2,14 +2,15 @@ import React from 'react';
 import './App.css';
 import './Button.css';
 import AddTaskButton from './Components/AddTaskButton';
-import NewTaskBorad from './Components/NewTaskBoard';
+import NewTaskBoard from './Components/NewTaskBoard';
 import CompletedTasks from './Components/CompletedTasks';
 import InProgress from './Components/InProgressTasks';
 import { useState } from 'react';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import AddTaskPopup from './Components/AddTaskPopup';
 // import ItemBoard from './Components/ItemBoard';
-// import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+// import { DragDropContext, Draggable,  Droppable } from "react-beautiful-dnd";
+import DragAndDrop from './Components/DragDrop';
 
 function App() {
 
@@ -27,24 +28,6 @@ function App() {
   let assignStatus = JSON.parse(localStorage.getItem('taskBoard'))||[]
   const assignCount = assignStatus.filter(task => task.taskStatus === 'Assign').length;
   const [count, setCount] = useState(assignStatus.length > 0 ? assignCount : 0)
-
-  // const taskStatus ={
-  //   assing:{
-  //     name: 'Assign',
-  //     items: tasks,
-  //   },
-  //   inProgress:{
-  //     name:'In Progress',
-  //     items: [],
-  //   },
-  //   completed:{
-  //     name: 'Completed',
-  //     task: [],
-  //   }
-  // }
-
- 
-  
 
   const handleAddNewTasksPopup = () => {
     setIsOpen (true)
@@ -64,7 +47,7 @@ function App() {
             taskName: taskName,
             description: taskDescription,
             dueDate: dueDate,
-            taskStatus:'Assign'
+            taskStatus:'Completed'
         };
         const updatedTaskList = [...taskList, newTask];
         setTaskList(updatedTaskList);
@@ -83,6 +66,10 @@ function App() {
   localStorage.setItem('taskBoard', JSON.stringify(updatedTasks)); 
     setCount(count -1)
 }
+
+
+
+
 
   return (
     <div className="App">
@@ -110,16 +97,22 @@ function App() {
                             setTaskDescription={setTaskDescription}
                             dueDate={dueDate}
                             setDueDate={setDueDate}  /> }
-              <div className='bottom-section'>
-                {/* <DragDropContext >
-                  <Droppable droppableId="tasks"> */}
-                      <NewTaskBorad deleteAddedTasks={deleteAddedTasks}
+              {/* <div className='bottom-section'>
+                      <NewTaskBoard deleteAddedTasks={deleteAddedTasks}
                                                />
                       <InProgress />
                       <CompletedTasks />
-                  {/* </Droppable>
-                </DragDropContext>   */}
-              </div>
+
+
+
+
+
+              </div> */}
+<div>
+  <DragAndDrop/>
+</div>
+
+
         </div>
       </div>
     </div>
