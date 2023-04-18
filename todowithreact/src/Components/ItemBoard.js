@@ -26,10 +26,3 @@ function ItemBoard(props) {
 
 export default ItemBoard
 
-
-
-
-
-
-
-

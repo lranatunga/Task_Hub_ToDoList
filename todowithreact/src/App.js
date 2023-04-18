@@ -25,6 +25,12 @@ function App() {
   const assignCount = assignStatus.filter(task => task.taskStatus === 'Assign').length;
   const [count, setCount] = useState(assignStatus.length > 0 ? assignCount : 0)
 
+  const inProgressCount = assignStatus.filter(task => task.taskStatus === 'In progress').length;
+  const [countIn, setCountIn] = useState(inProgressCount.length > 0 ? inProgressCount : 0)
+
+  const completedCount = assignStatus.filter(task => task.taskStatus === 'Completed').length;
+  const [countComplete, setcountComplete] = useState(completedCount.length > 0 ? completedCount : 0)
+
   const handleAddNewTasksPopup = () => {
     setIsOpen (true)
   }
@@ -55,6 +61,16 @@ function App() {
         setId (id + 1)
 
   }
+  function setCountIn (){
+    setcountIn(countIn + 1)
+  }
+
+  function setCountComplete() {
+
+    setcountComplete(countComplete + 1)
+  }
+
+ 
 
   return (
     <div className="App">
@@ -65,9 +81,10 @@ function App() {
         </div>
         <div className='right-Section'>
               <div className='top-section'>
-                  <AddTaskButton count={count}
-                                 countIn={ 0} 
-                                 countComplete={0}
+                  <AddTaskButton 
+                                count={assignCount}
+                                 countIn={inProgressCount} 
+                                 countComplete={completedCount}
                                  projrctName={'Create to do list'}
                                  handleAddNewTasksPopup= {handleAddNewTasksPopup}
                                   />
@@ -84,7 +101,8 @@ function App() {
                             setDueDate={setDueDate}  /> }
           
         <div>
-          <DragAndDrop  taskList={taskList} setTaskList={setTaskList}  />
+          <DragAndDrop  taskList={taskList} setTaskList={setTaskList} setCountIn={setCountIn}
+  setCountComplete={setCountComplete}  />
         </div>
 
 
