@@ -2,15 +2,11 @@ import React from 'react';
 import './App.css';
 import './Button.css';
 import AddTaskButton from './Components/AddTaskButton';
-import NewTaskBoard from './Components/NewTaskBoard';
-import CompletedTasks from './Components/CompletedTasks';
-import InProgress from './Components/InProgressTasks';
 import { useState } from 'react';
 // import { useEffect } from 'react';
 import AddTaskPopup from './Components/AddTaskPopup';
-// import ItemBoard from './Components/ItemBoard';
-// import { DragDropContext, Draggable,  Droppable } from "react-beautiful-dnd";
 import DragAndDrop from './Components/DragDrop';
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
 
@@ -44,10 +40,11 @@ function App() {
 
         const newTask = {
             id :id,
+            taskId: uuidv4(),
             taskName: taskName,
             description: taskDescription,
             dueDate: dueDate,
-            taskStatus:'Completed'
+            taskStatus:'Assign'
         };
         const updatedTaskList = [...taskList, newTask];
         setTaskList(updatedTaskList);
@@ -58,18 +55,6 @@ function App() {
         setId (id + 1)
 
   }
-
-
-   const deleteAddedTasks  = (id) =>{
- const updatedTasks = taskList.filter(task => task.id !== id);
-  setTaskList(updatedTasks);
-  localStorage.setItem('taskBoard', JSON.stringify(updatedTasks)); 
-    setCount(count -1)
-}
-
-
-
-
 
   return (
     <div className="App">
@@ -97,20 +82,10 @@ function App() {
                             setTaskDescription={setTaskDescription}
                             dueDate={dueDate}
                             setDueDate={setDueDate}  /> }
-              {/* <div className='bottom-section'>
-                      <NewTaskBoard deleteAddedTasks={deleteAddedTasks}
-                                               />
-                      <InProgress />
-                      <CompletedTasks />
-
-
-
-
-
-              </div> */}
-<div>
-  <DragAndDrop/>
-</div>
+          
+        <div>
+          <DragAndDrop/>
+        </div>
 
 
         </div>
