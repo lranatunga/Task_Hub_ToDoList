@@ -84,7 +84,7 @@ function App() {
                             setDueDate={setDueDate}  /> }
           
         <div>
-          <DragAndDrop/>
+          <DragAndDrop  taskList={taskList} setTaskList={setTaskList}  />
         </div>
 
 
