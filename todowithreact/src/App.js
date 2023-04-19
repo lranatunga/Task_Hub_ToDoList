@@ -26,7 +26,6 @@ function App() {
   const [count, setCount] = useState(assignStatus.length > 0 ? assignCount : 0)
 
   const inProgressCount = assignStatus.filter(task => task.taskStatus === 'In progress').length;
-  console.log(inProgressCount)
   const [countIn, setcountIn] = useState(inProgressCount.length > 0 ? inProgressCount : 0)
 
   const completedCount = assignStatus.filter(task => task.taskStatus === 'Completed').length;
@@ -71,6 +70,13 @@ function App() {
     setcountComplete(countComplete + 1)
   }
 
+  // function deleteAddedTasks  (index) {
+  //   console.log('hi')
+  //   const newTaskList = [...taskList];
+  //   newTaskList.splice(index, 1);
+  //   setTaskList(newTaskList); 
+  // }
+
  
 
   return (
@@ -86,7 +92,7 @@ function App() {
                                 count={assignCount}
                                  countIn={inProgressCount} 
                                  countComplete={completedCount}
-                                 projrctName={'Create to do list'}
+                                 projectName={'Create to do list'}
                                  handleAddNewTasksPopup= {handleAddNewTasksPopup}
                                   />
               </div>
@@ -103,7 +109,7 @@ function App() {
           
         <div>
           <DragAndDrop  taskList={taskList} setTaskList={setTaskList} setCountIn={setCountIn}
-  setCountComplete={setCountComplete}  />
+  setCountComplete={setCountComplete} />
         </div>
 
 

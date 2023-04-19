@@ -17,7 +17,7 @@ function ItemBoard(props) {
               <div className='due'>
                 <p style={{display:'flex', justifyContent:'flex-start',margin:'0',border:'1px solid red'}}type='date'>Due Date: {props.dueDate} <input type="date"/>  </p>
               </div>
-              < DeleteButton handleDelete={props.handleDelete}/>
+              < DeleteButton  handleDelete={() => props.handleDelete(props.index)} />
             </div>
            
     

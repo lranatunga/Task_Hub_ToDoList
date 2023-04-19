@@ -66,6 +66,15 @@ function DragAndDrop(props) {
     updateTaskCount(destination.droppableId);
   };
 
+
+  function deleteAddedTasks  (index) {
+    console.log('hi')
+    const newTaskList = [...taskList];
+    newTaskList.splice(index, 1);
+    setTaskList(newTaskList); 
+    localStorage.setItem('taskBoard', JSON.stringify(newTaskList));
+  }
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="bottom-section">
@@ -104,6 +113,7 @@ function DragAndDrop(props) {
                               taskName={task.taskName}
                               taskDescription={task.description}
                               dueDate={task.dueDate}
+                              handleDelete={() => deleteAddedTasks(index)}
                             />
                           </div>
                         )}
@@ -138,6 +148,8 @@ function DragAndDrop(props) {
                                 taskName={task.taskName}
                                 taskDescription={task.description}
                                 dueDate={task.dueDate}
+                                handleDelete={() => deleteAddedTasks(index)}
+
                               />
                             </div>
                           )}
@@ -173,6 +185,7 @@ function DragAndDrop(props) {
                                 taskName={task.taskName}
                                 taskDescription={task.description}
                                 dueDate={task.dueDate}
+                                handleDelete={() => deleteAddedTasks(index)}
                               />
                             </div>
                           )}
