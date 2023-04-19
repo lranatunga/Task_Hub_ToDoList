@@ -26,7 +26,8 @@ function App() {
   const [count, setCount] = useState(assignStatus.length > 0 ? assignCount : 0)
 
   const inProgressCount = assignStatus.filter(task => task.taskStatus === 'In progress').length;
-  const [countIn, setCountIn] = useState(inProgressCount.length > 0 ? inProgressCount : 0)
+  console.log(inProgressCount)
+  const [countIn, setcountIn] = useState(inProgressCount.length > 0 ? inProgressCount : 0)
 
   const completedCount = assignStatus.filter(task => task.taskStatus === 'Completed').length;
   const [countComplete, setcountComplete] = useState(completedCount.length > 0 ? completedCount : 0)

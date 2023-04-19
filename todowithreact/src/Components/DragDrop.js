@@ -10,7 +10,7 @@ function DragAndDrop(props) {
   
   const updateTaskCount = (droppableId) => {
     const assignCount = taskList.filter((task) => task.taskStatus === "Assign").length;
-    const inProgressCount = taskList.filter((task) => task.taskStatus === "In Progress").length;
+    const inProgressCount = taskList.filter((task) => task.taskStatus === "In progress").length;
     const completedCount = taskList.filter((task) => task.taskStatus === "Completed").length;
     switch (droppableId) {
       case "new-tasks":
@@ -31,6 +31,9 @@ function DragAndDrop(props) {
       default:
         break;
     }
+    if (taskCount.inProgress > inProgressCount && droppableId !== "in-progress") {
+      props.setCountIn(inProgressCount);
+    }
   };
 
   const onDragEnd = (result) => {
@@ -47,7 +50,7 @@ function DragAndDrop(props) {
           case "new-tasks":
             return { ...task, taskStatus: "Assign" };
           case "in-progress":
-            return { ...task, taskStatus: "In Progress" };
+            return { ...task, taskStatus: "In progress" };
           case "completed-tasks":
             return { ...task, taskStatus: "Completed" };
           default:
@@ -113,7 +116,7 @@ function DragAndDrop(props) {
         </div>
 
                      <div className="section-inprogress">
-   <TaskStatus  class={'inprogress-boards'}status={'In Progress'} />
+   <TaskStatus  class={'inprogress-boards'}status={'In progress'} />
                   <Droppable droppableId="in-progress">
                {(provided) => (
                   <div
@@ -122,7 +125,7 @@ function DragAndDrop(props) {
                     ref={provided.innerRef}
                   >
                     {taskList && taskList
-                      .filter((task) => task.taskStatus === "In Progress")
+                      .filter((task) => task.taskStatus === "In progress")
                       .map((task, index) => (
                         <Draggable key={task.taskId} draggableId={task.taskId} index={index}>
                           {(provided) => (
