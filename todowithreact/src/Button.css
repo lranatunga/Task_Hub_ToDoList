@@ -176,6 +176,15 @@
     cursor: pointer;
     opacity: 0.7;
 }
+.save{
+    justify-content:flex-end;
+    align-self: flex-end;
+    transform: scale(0.5);
+    height: 2.5em;
+    width: 2.5em;
+    cursor: pointer;
+    opacity: 0.7;
+}
 
 .new-task-boards{
     background-color:orange;

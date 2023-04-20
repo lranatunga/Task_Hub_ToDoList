@@ -11,7 +11,7 @@ export default function AddTaskPopup (props){
     return (
         <div className="new-task-popup">
               <form className="new-task-form">
-                    <DeleteButton handleDelete={props.handleDelete}/>
+                    <DeleteButton onClick={props.handleDelete}/>
                 <p className="task-name">Task Name: 
                 <input 
                     type="text"

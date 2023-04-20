@@ -67,12 +67,14 @@ function DragAndDrop(props) {
   };
 
 
-  function deleteAddedTasks  (index) {
-    console.log('hi')
-    const newTaskList = [...taskList];
-    newTaskList.splice(index, 1);
-    setTaskList(newTaskList); 
-    localStorage.setItem('taskBoard', JSON.stringify(newTaskList));
+  function deleteAddedTasks(taskID) {
+    const newTaskList = JSON.parse(localStorage.getItem('taskBoard')) || [];
+    const index = newTaskList.findIndex(task => task.taskId === taskID);
+    if (index !== -1) {
+      newTaskList.splice(index, 1);
+      setTaskList(newTaskList); 
+      localStorage.setItem('taskBoard', JSON.stringify(newTaskList));
+    }
   }
 
   return (
@@ -113,7 +115,7 @@ function DragAndDrop(props) {
                               taskName={task.taskName}
                               taskDescription={task.description}
                               dueDate={task.dueDate}
-                              handleDelete={() => deleteAddedTasks(index)}
+                              handleDelete={() => deleteAddedTasks(task.taskId)}
                             />
                           </div>
                         )}
@@ -148,7 +150,7 @@ function DragAndDrop(props) {
                                 taskName={task.taskName}
                                 taskDescription={task.description}
                                 dueDate={task.dueDate}
-                                handleDelete={() => deleteAddedTasks(index)}
+                                handleDelete={() => deleteAddedTasks(task.taskId)}
 
                               />
                             </div>
@@ -185,7 +187,7 @@ function DragAndDrop(props) {
                                 taskName={task.taskName}
                                 taskDescription={task.description}
                                 dueDate={task.dueDate}
-                                handleDelete={() => deleteAddedTasks(index)}
+                                handleDelete={() => deleteAddedTasks(task.taskId)}
                               />
                             </div>
                           )}
