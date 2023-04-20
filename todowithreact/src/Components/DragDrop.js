@@ -7,6 +7,8 @@ import { useState } from "react";
 function DragAndDrop(props) {
   const { taskList, setTaskList } = props;
   const [taskCount, setTaskCount] = useState(0);
+  const [taskEditing, setTaskEditing] = useState('');
+  const [editedTaskName, setEditedTaskName] = useState("");
   
   const updateTaskCount = (droppableId) => {
     const assignCount = taskList.filter((task) => task.taskStatus === "Assign").length;
@@ -77,6 +79,8 @@ function DragAndDrop(props) {
     }
   }
 
+
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="bottom-section">
@@ -111,11 +115,15 @@ function DragAndDrop(props) {
                             {...provided.dragHandleProps}
                             ref={provided.innerRef}
                           >
+                       
                             <ItemBoard
                               taskName={task.taskName}
                               taskDescription={task.description}
                               dueDate={task.dueDate}
                               handleDelete={() => deleteAddedTasks(task.taskId)}
+                              handleInputChange={task.handleInputChange}
+                              editedTaskName={editedTaskName}
+                              setEditedTaskName={setEditedTaskName}
                             />
                           </div>
                         )}

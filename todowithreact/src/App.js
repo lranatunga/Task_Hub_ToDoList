@@ -31,6 +31,10 @@ function App() {
   const completedCount = assignStatus.filter(task => task.taskStatus === 'Completed').length;
   const [countComplete, setcountComplete] = useState(completedCount.length > 0 ? completedCount : 0)
 
+
+  
+
+
   const handleAddNewTasksPopup = () => {
     setIsOpen (true)
   }
@@ -69,15 +73,17 @@ function App() {
 
     setcountComplete(countComplete + 1)
   }
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    if (name === 'taskName') {
+      setTaskName(value);
+    } else if (name === 'taskDescription') {
+      setTaskDescription(value);
+    } else if (name === 'dueDate') {
+      setDueDate(value);
+    }
+  };
 
-  // function deleteAddedTasks  (index) {
-  //   console.log('hi')
-  //   const newTaskList = [...taskList];
-  //   newTaskList.splice(index, 1);
-  //   setTaskList(newTaskList); 
-  // }
-
- 
 
   return (
     <div className="App">
@@ -109,7 +115,8 @@ function App() {
           
         <div>
           <DragAndDrop  taskList={taskList} setTaskList={setTaskList} setCountIn={setCountIn}
-  setCountComplete={setCountComplete} />
+  setCountComplete={setCountComplete}
+  handleInputChange={handleInputChange} />
         </div>
 
 
