@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import './App.css';
 import './Lakmali.css';
 import "./SideBar.css";
@@ -64,6 +64,9 @@ function App() {
         setIsOpen(false)
 
         setCount(count + 1)
+        setTaskName('')
+        setTaskDescription('')
+        setDueDate('')
         setId (id + 1)
 
   }
@@ -75,54 +78,14 @@ function App() {
 
     setcountComplete(countComplete + 1)
   }
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    if (name === 'taskName') {
-      setTaskName(value);
-    } else if (name === 'taskDescription') {
-      setTaskDescription(value);
-    } else if (name === 'dueDate') {
-      setDueDate(value);
-    }
-  };
+ 
 
-
-  
-  const [projects, setProjects] = useState([]);
-
-  // Load project data from local storage on initial render
-  useEffect(() => {
-    const storedProjects = JSON.parse(localStorage.getItem("projects"));
-    if (storedProjects) {
-      setProjects(storedProjects);
-    }
-  }, []);
-
-  // Save project data to local storage whenever it changes
-  useEffect(() => {
-    localStorage.setItem("projects", JSON.stringify(projects));
-  }, [projects]);
-
-  const handleAddProject = (projectName) => {
-    const newProject = { name: projectName };
-    setProjects([...projects, newProject]);
-  };
-
-  const handleDeleteProject = (index) => {
-    const updatedProjects = [...projects];
-    updatedProjects.splice(index, 1);
-    setProjects(updatedProjects);
-  };
   return (
     <div className="App">
       <NavigationBar />
       <div className='main'>
         <div className='left-section'>
-        <SideBar
-            projects={projects}
-            onAddProject={handleAddProject}
-            onDeleteProject={handleDeleteProject}
-          />
+        <SideBar/>
         </div>
         <div className='right-Section'>
               <div className='top-section'>
@@ -146,9 +109,11 @@ function App() {
                             setDueDate={setDueDate}  /> }
           
         <div>
-          <DragAndDrop  taskList={taskList} setTaskList={setTaskList} setCountIn={setCountIn}
-  setCountComplete={setCountComplete}
-  handleInputChange={handleInputChange} />
+          <DragAndDrop  taskList={taskList} setTaskList={setTaskList} 
+                        setCountIn={setCountIn}
+                        setCountComplete={setCountComplete}
+  // handleInputChange={handleInputChange}
+          />
         </div>
 
     </div>
