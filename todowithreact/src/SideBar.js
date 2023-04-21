@@ -1,26 +1,32 @@
 import React, { useState } from "react";
+import {BrowserRouter as Router, Route, NavLink} from 'react-router-dom'
 
 
 function Sidebar() {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState(JSON.parse(localStorage.getItem('projectList'))||[]);
 
   const handleAddProject = (projectName) => {
-    setProjects([...projects, projectName]);
+    const updatedProjectList =([...projects, projectName]);
+    setProjects (updatedProjectList)
+    localStorage.setItem('projectList', JSON.stringify(updatedProjectList))
   };
 
   const handleDeleteProject = (index) => {
-    const newProjects = [...projects];
+    const newProjects = JSON.parse(localStorage.getItem('projectList'))||[];
     newProjects.splice(index, 1);
     setProjects(newProjects);
+    localStorage.setItem('projectList', JSON.stringify(newProjects))
   };
 
   return (
     <div className="sidebar">
       <div className="header">My Projects</div>
       <div className="project-list">
+      <Router>
         {projects.map((project, index) => (
           <div className="project" key={index}>
-            {project}
+              
+              <NavLink to={`/projects/${project}`}>{project}</NavLink>
             <button
               className="delete-project"
               onClick={() => handleDeleteProject(index)}
@@ -29,6 +35,7 @@ function Sidebar() {
             </button>
           </div>
         ))}
+        </Router>
       </div>
       <div className="buttons">
         <button

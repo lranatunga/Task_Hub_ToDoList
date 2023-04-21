@@ -107,13 +107,14 @@
     width:125px;
     height:40px;
     margin: 10px;
+    cursor: pointer;
 }
 
 /* NEW TASK POPUP FORM */
 .new-task-popup {
     position: absolute;
-    top: 10%;
-    left: 60%;
+    top: 12%;
+    left: 80%;
     /* transform: translate(-10%, -60%); */
     z-index: 9999;
   }

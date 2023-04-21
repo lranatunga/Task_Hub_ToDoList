@@ -151,14 +151,6 @@ function App() {
   handleInputChange={handleInputChange} />
         </div>
 
-      
-      {/* <div className="content">
-        <div> */}
-
-      {/* other components */}
-    {/* </div> */}
-        
-      {/* </div> */}
     </div>
       </div>
     </div>
