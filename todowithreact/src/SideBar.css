@@ -1,0 +1,66 @@
+.sidebar {
+  background-color: #c2def1;
+  width: 280px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding-top: 56px;
+  overflow-y: auto;
+}
+
+.header {
+  font-weight: bold;
+  font-size: 20px;
+  color: #1da1f2;
+  padding: 12px 20px;
+}
+
+.project-list {
+  padding: 20px;
+}
+
+.project {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  color: #1c2938;
+  padding: 8px 0;
+  border-bottom: 1px solid #e6ecf0;
+}
+
+.project:last-child {
+  border-bottom: none;
+}
+
+.delete-project {
+  background-color: transparent;
+  color: #1da1f2;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.delete-project:hover {
+  text-decoration: underline;
+}
+
+.add-project {
+  background-color: #61baf2;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 12px 20px;
+  margin: 20px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.add-project:hover {
+  background-color: #0c8de4;
+}
