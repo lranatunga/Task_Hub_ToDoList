@@ -35,6 +35,7 @@
     background-color: rgb(243, 240, 240);
     gap:10px;
     height: 100vh;
+    /* overflow-y: auto; */
     
 }
 
@@ -61,6 +62,7 @@
     width:200px;
     height:40px;
     margin: 10px;
+   
 }
 
 
@@ -256,12 +258,33 @@
     display: flex;
     flex-direction: column;
     background-color:white;
-    width: 220px;
-    height: 220px;
+    width: 210px;
+    height: 130px;
     justify-content: center;
     padding: 1rem;
     gap: 8px;
     border-radius: 1rem;
     border: 1px solid rgb(194, 191, 191);
     margin: 10px;
+}
+
+.project-list-links{
+    text-decoration: none;
+}
+
+/* .project-list{
+    background-color: transparent;
+    color: #1da1f2;
+    border: none;
+    cursor: pointer;
+    outline: none;
+} */
+
+.project-links:hover{
+    text-decoration: underline;
+}
+
+.project-links{
+ list-style-type: none;
+ color: #1da1f2;
 }
