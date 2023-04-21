@@ -115,8 +115,7 @@ function App() {
           
         <div>
           <DragAndDrop  taskList={taskList} setTaskList={setTaskList} setCountIn={setCountIn}
-  setCountComplete={setCountComplete}
-  handleInputChange={handleInputChange} />
+  setCountComplete={setCountComplete} />
         </div>
 
 

@@ -1,15 +1,24 @@
-
+import { useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import ItemBoard from "./ItemBoard";
 import TaskStatus from "./TasksStatus";
 import { useState } from "react";
+import EditTasks from "./EditTask";
 
 function DragAndDrop(props) {
   const { taskList, setTaskList } = props;
   const [taskCount, setTaskCount] = useState(0);
-  const [taskEditing, setTaskEditing] = useState('');
-  const [editedTaskName, setEditedTaskName] = useState("");
+  const [isEditing, setIsEditing] = useState(Array(taskList).fill(false));
+  // console.log(isEditing)
+  const [taskName, setTaskName] = useState('')
+  const [taskDescription, setTaskDescription] = useState('')
+  const [dueDate, setDueDate] = useState('')
   
+
+  useEffect(() => {
+    setIsEditing(Array(taskList.length).fill(false));
+  }, [taskList]);
+
   const updateTaskCount = (droppableId) => {
     const assignCount = taskList.filter((task) => task.taskStatus === "Assign").length;
     const inProgressCount = taskList.filter((task) => task.taskStatus === "In progress").length;
@@ -79,6 +88,39 @@ function DragAndDrop(props) {
     }
   }
 
+ 
+
+  function handleEditing(taskID) {
+    console.log(taskID)
+    const selectEdit = taskList.findIndex((task) => task.taskId === taskID);
+    console.log(selectEdit )
+    const newIsEditing = true;
+    console.log(newIsEditing)
+    setIsEditing(newIsEditing);
+  }
+  
+  function handleEditedInput(e, taskId) {
+    const { name, value } = e.target;
+    const index = taskList.findIndex((task) => task.taskId === taskId);
+    const updatedTaskList = [...taskList];
+    const updatedTask = { ...updatedTaskList[index] };
+    updatedTask[name] = value;
+    updatedTaskList[index] = updatedTask;
+    setTaskList(updatedTaskList);
+  }
+  
+
+
+  function handleDoneEditing(taskID) {
+    const index = taskList.findIndex(task => task.taskId === taskID);
+    const newIsEditing = [...isEditing];
+    newIsEditing[index] = false;
+    setIsEditing(newIsEditing);
+  }
+
+  function  handleEditedInput ( ){
+
+  }
 
 
   return (
@@ -115,17 +157,28 @@ function DragAndDrop(props) {
                             {...provided.dragHandleProps}
                             ref={provided.innerRef}
                           >
-                       
-                            <ItemBoard
-                              taskName={task.taskName}
-                              taskDescription={task.description}
-                              dueDate={task.dueDate}
-                              handleDelete={() => deleteAddedTasks(task.taskId)}
-                              handleInputChange={task.handleInputChange}
-                              editedTaskName={editedTaskName}
-                              setEditedTaskName={setEditedTaskName}
-                            />
-                          </div>
+                             {isEditing [task.taskId] ? (
+       
+            
+            <EditTasks
+           
+                editedTaskName={taskName}
+                editedTaskDescription={taskDescription}
+                dueDate={dueDate}
+                handleInputChange={(e) => handleEditedInput(e, task.taskId)}
+                handleEditSave={() => handleDoneEditing(task.taskId)}
+            />
+
+            ) : (
+              <ItemBoard
+                taskName={task.taskName}
+                taskDescription={task.description}
+                dueDate={task.dueDate}
+                handleDelete={() => deleteAddedTasks(task.taskId)}
+                handleEditing={() => handleEditing(task.taskId)}
+              />
+            )}
+          </div>
                         )}
                       </Draggable>
                     ))}
@@ -154,13 +207,21 @@ function DragAndDrop(props) {
                               {...provided.dragHandleProps}
                               ref={provided.innerRef}
                             >
-                              <ItemBoard
-                                taskName={task.taskName}
-                                taskDescription={task.description}
-                                dueDate={task.dueDate}
-                                handleDelete={() => deleteAddedTasks(task.taskId)}
-
-                              />
+                          {isEditing[task.taskId] ? 
+                          ( <EditTasks
+                           editedTaskName={task.taskName}
+                           editedTaskDescription={task.description}
+                           dueDate={task.dueDate}
+                           handleInputChange={(e) => handleEditedInput(e, task.taskId)}
+                           handleEditSave={() => handleDoneEditing(task.taskId)}
+                         />):(
+                          <ItemBoard
+                              taskName={task.taskName}
+                              taskDescription={task.description}
+                              dueDate={task.dueDate}
+                              handleDelete={() => deleteAddedTasks(task.taskId)}
+                              handleEditing = {handleEditing}
+                            />)}
                             </div>
                           )}
                         </Draggable>
@@ -191,14 +252,23 @@ function DragAndDrop(props) {
                               {...provided.dragHandleProps}
                               ref={provided.innerRef}
                             >
-                              <ItemBoard
-                                taskName={task.taskName}
-                                taskDescription={task.description}
-                                dueDate={task.dueDate}
-                                handleDelete={() => deleteAddedTasks(task.taskId)}
-                              />
-                            </div>
-                          )}
+                          {isEditing[task.taskId] ? 
+                            ( <EditTasks
+                              editedTaskName={task.taskName}
+                              editedTaskDescription={task.description}
+                              dueDate={task.dueDate}
+                              handleInputChange={(e) => handleEditedInput(e, task.taskId)}
+                              handleEditSave={() => handleDoneEditing(task.taskId)}
+                            />):(
+                             <ItemBoard
+                                 taskName={task.taskName}
+                                 taskDescription={task.description}
+                                 dueDate={task.dueDate}
+                                 handleDelete={() => deleteAddedTasks(task.taskId)}
+                                 handleEditing = {handleEditing}
+                               />)}
+                               </div>
+                             )}
                         </Draggable>
                       ))}
                     {provided.placeholder}

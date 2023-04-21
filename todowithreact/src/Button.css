@@ -249,7 +249,21 @@
     flex-direction: column;
     background-color:white;
     width: 220px;
-    height: 220px;
+    height: 130px;
+    justify-content: center;
+    padding: 1rem;
+    gap: 8px;
+    border-radius: 1rem;
+    border: 1px solid rgb(194, 191, 191);
+    margin: 10px;
+}
+
+.edit-item-board{
+    display: flex;
+    flex-direction: column;
+    background-color:white;
+    width: 220px;
+    height: 130px;
     justify-content: center;
     padding: 1rem;
     gap: 8px;
