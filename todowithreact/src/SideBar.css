@@ -1,8 +1,8 @@
 .sidebar {
   background-color: #c2def1;
-  width: 280px;
-  height: 100%;
-  position: fixed;
+  /* width: 280px; */
+  height: 100vh;
+  /* position: fixed; */
   top: 0;
   left: 0;
   z-index: 1;

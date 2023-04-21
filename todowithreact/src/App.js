@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
-import './Button.css';
+import './Lakmali.css';
+import "./SideBar.css";
+import './NavigationBar.css';
 import AddTaskButton from './Components/AddTaskButton';
-import { useState } from 'react';
-// import { useEffect } from 'react';
 import AddTaskPopup from './Components/AddTaskPopup';
 import DragAndDrop from './Components/DragDrop';
 import { v4 as uuidv4 } from 'uuid';
@@ -115,10 +115,14 @@ function App() {
   };
   return (
     <div className="App">
-      {/* <Header /> */}
+      <NavigationBar />
       <div className='main'>
         <div className='left-section'>
-
+        <SideBar
+            projects={projects}
+            onAddProject={handleAddProject}
+            onDeleteProject={handleDeleteProject}
+          />
         </div>
         <div className='right-Section'>
               <div className='top-section'>
@@ -147,19 +151,14 @@ function App() {
   handleInputChange={handleInputChange} />
         </div>
 
-      <NavigationBar />
-      <div className="content">
-        <div>
-      <SideBar
-      projects={projects}
-      onAddProject={handleAddProject}
-      onDeleteProject={handleDeleteProject}
+      
+      {/* <div className="content">
+        <div> */}
 
-          />
       {/* other components */}
-    </div>
+    {/* </div> */}
         
-      </div>
+      {/* </div> */}
     </div>
       </div>
     </div>

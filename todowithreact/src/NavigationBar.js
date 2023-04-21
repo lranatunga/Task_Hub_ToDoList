@@ -1,5 +1,5 @@
 import React from 'react';
-import './NavigationBar.css';
+
 import logo from './logo.png';
 
 function NavigationBar() {
