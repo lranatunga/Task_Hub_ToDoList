@@ -9,7 +9,6 @@ import DragAndDrop from './Components/DragDrop';
 import { v4 as uuidv4 } from 'uuid';
 import NavigationBar from './NavigationBar';
 import SideBar from './SideBar';
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
 
 function App() {
 
@@ -35,9 +34,6 @@ function App() {
 
   const completedCount = assignStatus.filter(task => task.taskStatus === 'Completed' && task.projectName === projectName).length;
   const [countComplete, setcountComplete] = useState(completedCount > 0 ? completedCount : 0)
-
-
-  
 
 
   const handleAddNewTasksPopup = () => {
@@ -96,7 +92,6 @@ function App() {
  
 
   return (
-    <BrowserRouter>
     <div className="App">
       <NavigationBar />
       <div className='main'>
@@ -144,7 +139,6 @@ function App() {
 
       </div>
     </div>
-    </BrowserRouter>
   );
 }
 
