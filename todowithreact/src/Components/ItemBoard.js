@@ -1,9 +1,6 @@
 
-import { useState } from 'react';
 import editImage from '../images/edit.png';
-import saveImage from '../images/save.png';
 import DeleteButton from './Delete';
-import { v4 as uuidv4 } from 'uuid';
 
 function ItemBoard(props) {
  

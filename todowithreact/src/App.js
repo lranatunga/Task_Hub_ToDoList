@@ -26,14 +26,15 @@ function App() {
 
 
   let assignStatus = JSON.parse(localStorage.getItem('taskBoard'))||[]
-  const assignCount = assignStatus.filter(task => task.taskStatus === 'Assign').length;
+  const assignCount = assignStatus.filter(task => task.taskStatus === 'Assign' && task.projectName === projectName).length;
   const [count, setCount] = useState(assignStatus.length > 0 ? assignCount : 0)
 
-  const inProgressCount = assignStatus.filter(task => task.taskStatus === 'In progress').length;
-  const [countIn, setcountIn] = useState(inProgressCount.length > 0 ? inProgressCount : 0)
+  const inProgressCount = assignStatus.filter(task => task.taskStatus === 'In progress' && task.projectName === projectName).length;
 
-  const completedCount = assignStatus.filter(task => task.taskStatus === 'Completed').length;
-  const [countComplete, setcountComplete] = useState(completedCount.length > 0 ? completedCount : 0)
+  const [countIn, setcountIn] = useState(inProgressCount > 0 ? inProgressCount : 0)
+
+  const completedCount = assignStatus.filter(task => task.taskStatus === 'Completed' && task.projectName === projectName).length;
+  const [countComplete, setcountComplete] = useState(completedCount > 0 ? completedCount : 0)
 
 
   
@@ -91,7 +92,7 @@ function App() {
   }
   
   
-  
+  console.log('inProgressCount:', inProgressCount, " completedCount:", completedCount)
  
 
   return (
@@ -129,9 +130,11 @@ function App() {
                             setDueDate={setDueDate}  /> }
           
         <div>
-          <DragAndDrop  taskList={taskList} setTaskList={setTaskList} 
+          <DragAndDrop  taskList={taskList} 
+                        setTaskList={setTaskList} 
                         setCountIn={setCountIn}
                         setCountComplete={setCountComplete}
+                        projectName={projectName}
   
           />
         </div>

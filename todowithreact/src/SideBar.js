@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid';
 import { Link } from "react-router-dom"
 
@@ -73,7 +72,7 @@ function Sidebar(props) {
       value={projectName}
       onChange={(event) => setProjectName(event.target.value)}
     />
-    <button onClick={handleFormSubmit} type="submit">Create project</button>
+    <button onClick={handleFormSubmit} type="submit">Save</button>
   </form>
 )}
   </div>
