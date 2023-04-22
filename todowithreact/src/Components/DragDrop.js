@@ -5,16 +5,19 @@ import TaskStatus from "./TasksStatus";
 import { useState } from "react";
 
 function DragAndDrop(props) {
-  const { taskList, setTaskList } = props;
+  const { taskList, setTaskList, projectName } = props;
   const [taskCount, setTaskCount] = useState(0);
   const [taskEditing, setTaskEditing] = useState('');
   const [editedTaskName, setEditedTaskName] = useState("");
-  const [projectName, setProjectName] = useState('');
+  // const [projectName, setProjectName] = useState('');
   
   const updateTaskCount = (droppableId) => {
-    const assignCount = taskList.filter((task) => task.taskStatus === "Assign").length;
-    const inProgressCount = taskList.filter((task) => task.taskStatus === "In progress").length;
-    const completedCount = taskList.filter((task) => task.taskStatus === "Completed").length;
+    const assignCount = taskList.filter((task) => task.taskStatus === "Assign" && task.projectName === projectName).length;
+    const inProgressCount = taskList.filter((task) => task.taskStatus === "In progress" && task.projectName === projectName).length;
+    const completedCount = taskList.filter((task) => task.taskStatus === "Completed" && task.projectName === projectName).length;
+
+    console.log('assignCount', assignCount, "inProgressCount:", inProgressCount, "completedCount:", completedCount)
+
     switch (droppableId) {
       case "new-tasks":
         setTaskCount({ ...taskCount, assign: assignCount });
@@ -80,8 +83,7 @@ function DragAndDrop(props) {
     }
   }
 
-
-
+  console.log('DnD runs tasklist is', taskList)
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="bottom-section">
@@ -89,10 +91,10 @@ function DragAndDrop(props) {
           <TaskStatus class={"new-task-boards"} status={"New Tasks"}  count={
                     taskList
                       ? taskList.filter(
-                          (task) => task.taskStatus === "Assign" || task.projectName === {projectName} 
+                          (task) => task.projectName === projectName && task.taskStatus === "Assign"
                         ).length
                       : 0
-                  }/>
+          }/>
           <Droppable droppableId="new-tasks">
             {(provided) => (
               <div
@@ -103,7 +105,7 @@ function DragAndDrop(props) {
                
                 {taskList &&
                   taskList
-                    .filter((task) => task.taskStatus === "Assign" || task.projectName === {projectName})
+                    .filter((task) =>task.projectName === projectName && task.taskStatus === "Assign" )
                     .map((task, index) => (
                       <Draggable
                         key={task.taskId}
@@ -146,7 +148,7 @@ function DragAndDrop(props) {
                     ref={provided.innerRef}
                   >
                     {taskList && taskList
-                      .filter((task) => task.taskStatus === "In progress" || task.projectName === {projectName})
+                      .filter((task) => task.taskStatus === "In progress" && task.projectName === projectName)
                       .map((task, index) => (
                         <Draggable key={task.taskId} draggableId={task.taskId} index={index}>
                           {(provided) => (
@@ -183,7 +185,7 @@ function DragAndDrop(props) {
                     ref={provided.innerRef}
                   >
                     {taskList && taskList
-                      .filter((task) => task.taskStatus === "Completed" || task.projectName === {projectName})
+                      .filter((task) => task.taskStatus === "Completed" && task.projectName === projectName )
                       .map((task, index) => (
                         <Draggable key={task.taskId} draggableId={task.taskId} index={index}>
                           {(provided) => (
