@@ -9,6 +9,7 @@ function DragAndDrop(props) {
   const [taskCount, setTaskCount] = useState(0);
   const [taskEditing, setTaskEditing] = useState('');
   const [editedTaskName, setEditedTaskName] = useState("");
+  const [projectName, setProjectName] = useState('');
   
   const updateTaskCount = (droppableId) => {
     const assignCount = taskList.filter((task) => task.taskStatus === "Assign").length;
@@ -88,7 +89,7 @@ function DragAndDrop(props) {
           <TaskStatus class={"new-task-boards"} status={"New Tasks"}  count={
                     taskList
                       ? taskList.filter(
-                          (task) => task.taskStatus === "Assign"
+                          (task) => task.taskStatus === "Assign" || task.projectName === {projectName} 
                         ).length
                       : 0
                   }/>
@@ -102,7 +103,7 @@ function DragAndDrop(props) {
                
                 {taskList &&
                   taskList
-                    .filter((task) => task.taskStatus === "Assign")
+                    .filter((task) => task.taskStatus === "Assign" || task.projectName === {projectName})
                     .map((task, index) => (
                       <Draggable
                         key={task.taskId}
@@ -145,7 +146,7 @@ function DragAndDrop(props) {
                     ref={provided.innerRef}
                   >
                     {taskList && taskList
-                      .filter((task) => task.taskStatus === "In progress")
+                      .filter((task) => task.taskStatus === "In progress" || task.projectName === {projectName})
                       .map((task, index) => (
                         <Draggable key={task.taskId} draggableId={task.taskId} index={index}>
                           {(provided) => (
@@ -182,7 +183,7 @@ function DragAndDrop(props) {
                     ref={provided.innerRef}
                   >
                     {taskList && taskList
-                      .filter((task) => task.taskStatus === "Completed")
+                      .filter((task) => task.taskStatus === "Completed" || task.projectName === {projectName})
                       .map((task, index) => (
                         <Draggable key={task.taskId} draggableId={task.taskId} index={index}>
                           {(provided) => (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState} from "react";
 import './App.css';
 import './Lakmali.css';
 import "./SideBar.css";
@@ -7,17 +7,14 @@ import AddTaskButton from './Components/AddTaskButton';
 import AddTaskPopup from './Components/AddTaskPopup';
 import DragAndDrop from './Components/DragDrop';
 import { v4 as uuidv4 } from 'uuid';
-import NavigationBar from './NavigationBar';
-import SideBar from './SideBar';
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
 
-function App() {
 
-  const [isProjectClick, setIsProjectClick] = useState(false)
+function TaskList(props) {
+
   const [isOpen, setIsOpen] = useState(false)
-  const [taskName, setTaskName] = useState('')
-  const [projectName, setProjectName] = useState('');
 
+  
+  const [taskName, setTaskName] = useState('')
   const [taskDescription, setTaskDescription] = useState('')
   const [dueDate, setDueDate] = useState('')
   const [id ,  setId] = useState (1)
@@ -34,6 +31,8 @@ function App() {
 
   const completedCount = assignStatus.filter(task => task.taskStatus === 'Completed').length;
   const [countComplete, setcountComplete] = useState(completedCount.length > 0 ? completedCount : 0)
+
+  
 
 
   
@@ -54,7 +53,6 @@ function App() {
 
         const newTask = {
             id :id,
-            projectName:projectName,
             taskId: uuidv4(),
             taskName: taskName,
             description: taskDescription,
@@ -81,39 +79,17 @@ function App() {
 
     setcountComplete(countComplete + 1)
   }
-  
-  function handleProjectBoardDisplay(projectName) {
-    setIsProjectClick(true);
-    const projectNameList = JSON.parse(localStorage.getItem('projectList'));
-    const selectedProject = projectNameList.find(project => project.projectName === projectName);
-    setProjectName(selectedProject ? selectedProject.projectName : '');
-    console.log(selectedProject);
-  }
-  
-  
-  
- 
+
 
   return (
-    <BrowserRouter>
-    <div className="App">
-      <NavigationBar />
-      <div className='main'>
-        <div className='left-section'>
-        <SideBar
-                showProjectBoard={handleProjectBoardDisplay}/>
-        </div>
-        {isProjectClick && 
-      
+   
         <div className='right-Section'>
-          
               <div className='top-section'>
-             
                   <AddTaskButton 
                                 count={assignCount}
                                  countIn={inProgressCount} 
                                  countComplete={completedCount}
-                                 projectName={projectName}
+                                 projectName={currentProject}
                                  handleAddNewTasksPopup= {handleAddNewTasksPopup}
                                   />
               </div>
@@ -137,13 +113,10 @@ function App() {
         </div>
 
     </div>
-    }
-
-      </div>
-    </div>
-    </BrowserRouter>
-  );
+  )   
 }
 
-export default App;
+export default TaskList;
+
+
 
