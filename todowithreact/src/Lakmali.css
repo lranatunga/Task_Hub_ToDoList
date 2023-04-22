@@ -35,7 +35,7 @@
     background-color: rgb(243, 240, 240);
     gap:10px;
     height: 100vh;
-    /* overflow-y: auto; */
+    overflow-y: auto;
     
 }
 
@@ -363,7 +363,7 @@
     }
     .new-task-popup {
         position: absolute;
-        top: 53%;
+        top: 50%;
         left: 10%;
         /* transform: translate(-10%, -60%); */
         z-index: 9999;
