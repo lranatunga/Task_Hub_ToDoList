@@ -35,7 +35,7 @@
     background-color: rgb(243, 240, 240);
     gap:10px;
     height: 100vh;
-    overflow-y: auto;
+    /* overflow-y: auto; */
     
 }
 
