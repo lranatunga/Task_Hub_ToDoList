@@ -23,8 +23,6 @@ function App() {
   const [id ,  setId] = useState (1)
   const [taskList, setTaskList] = useState (
    JSON.parse(localStorage.getItem('taskBoard'))||[])
-   const [currentProject, setCurrentProject] = useState(''); // add state variable for the current project
-   const [projects, setProjects] = useState(JSON.parse(localStorage.getItem('projectList'))||[]);
 
 
   let assignStatus = JSON.parse(localStorage.getItem('taskBoard'))||[]
@@ -56,7 +54,7 @@ function App() {
 
         const newTask = {
             id :id,
-            // projectName:setProjectName(projectName),
+            projectName:projectName,
             taskId: uuidv4(),
             taskName: taskName,
             description: taskDescription,
@@ -83,12 +81,11 @@ function App() {
 
     setcountComplete(countComplete + 1)
   }
-
+  
   function handleProjectBoardDisplay(projectName) {
     setIsProjectClick(true);
     const projectNameList = JSON.parse(localStorage.getItem('projectList'));
-    console.log(projectNameList)
-    const selectedProject = projectNameList.findIndex(project => project.projectName === projectName);
+    const selectedProject = projectNameList.find(project => project.projectName === projectName);
     setProjectName(selectedProject ? selectedProject.projectName : '');
     console.log(selectedProject);
   }

@@ -24,10 +24,11 @@ function Sidebar(props) {
 
 
 
-  function handleDeleteProject(ProjectId) {
+  function handleDeleteProject(projectName) {
     const newProjects = JSON.parse(localStorage.getItem('projectList'))||[];
 
-    const index = newProjects.findIndex(project => project.ProjectId=== ProjectId);
+    const index = newProjects.findIndex(project => project.projectName=== projectName);
+   
     if (index !== -1) {
       newProjects.splice(index, 1);
       setProjectList(newProjects);
@@ -45,7 +46,7 @@ function Sidebar(props) {
       {projectList.map((project, index) => (
       <Link  className="project-list-links" key={index}>
         <div className="project" key={index}>
-        <li onClick={props.showProjectBoard} className="project-links">{project.projectName}</li>
+        <li onClick={() => props.showProjectBoard(project.projectName)} className="project-links">{project.projectName}</li>
 
           <button
             className="delete-project"
