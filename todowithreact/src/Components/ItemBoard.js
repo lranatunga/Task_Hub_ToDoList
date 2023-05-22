@@ -9,9 +9,9 @@ function ItemBoard(props) {
     <div className="item-board">
     
         <>
-          <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '0' }}>
+          {/* <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '0' }}>
             <img className='edit' src={editImage} alt='edit' onClick={props.handleEditing} />
-          </div>
+          </div> */}
           <p style={{ display: 'flex', justifyContent: 'flex-start', margin: '0' }}>Task Name : {props.taskName}</p>
           <p style={{ display: 'flex', justifyContent: 'flex-start', margin: '0' }}>Description : {props.taskDescription}</p>
           <div className='due'>
